@@ -16,8 +16,10 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     if @product.save
+      flash[:notice] = "Product created!"
       redirect_to products_url
     else
+      flash.now[:error] = "Could not save product."
       render :new
     end
   end
@@ -29,9 +31,11 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
 
-    if @product.update_attirbutes(product_params)
+    if @product.update_attributes(product_params)
+      flash[:notice] = "Product updated!"
       redirect_to product_url(@product)
     else
+      flash[:error] = "Could not update product."
       render :edit
     end
   end
