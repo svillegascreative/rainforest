@@ -1,0 +1,6 @@
+<p>
+  <%= review.comment %><br />
+  <% if review.user != nil %>
+    by <%= review.user.email %> on <%= review.created_at %>
+  <% end %>
+</p>
